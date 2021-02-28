@@ -1,7 +1,16 @@
+import { useState } from "react";
+import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
+import { IconArrow } from "../components/Icons";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
   return (
     <>
       <Head>
@@ -9,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <section className="my-20">
+        <section className="my-24">
           <div className="wrapper">
             <Image
               src="/me.png"
@@ -21,7 +30,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="my-20">
+        <section className="my-24">
           <div className="wrapper">
             <h1>Abhishek Kambli</h1>
             <p>
@@ -52,7 +61,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="my-20">
+        <section className="my-24">
           <div className="wrapper">
             <Image
               src="/tlkn.png"
@@ -69,7 +78,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="my-20">
+        <section className="my-24">
           <div className="wrapper">
             <Image
               src="/samespace.png"
@@ -86,7 +95,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="my-20">
+        <section className="my-24">
           <div className="wrapper">
             <h2 className="mb-2.5">Some Kind words</h2>
             <p>
@@ -107,7 +116,37 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="my-20">
+        <section className="my-24">
+          <div className="wrapper">
+            <h2 className="mb-2.5">Subscribe to the newsletter</h2>
+            <p className="mb-5">
+              Get emails from me about web development, tech, and early access
+              to new articles.
+            </p>
+            <div className="border-b py-3 border-solid border-white border-opacity-20 relative">
+              <input
+                className="bg-transparent p-0 w-full pr-8 font-light placeholder-white placeholder-opacity-30"
+                type="email"
+                placeholder="email"
+                required
+                value={email}
+                onChange={(event) => handleEmail(event)}
+              />
+              <div
+                className={classNames(
+                  "absolute bg-black cursor-pointer pointer-events-auto right-0 top-0 bottom-0 w-8 flex items-center justify-center",
+                  {
+                    "opacity-30 pointer-events-none": email === "",
+                  }
+                )}
+              >
+                <IconArrow />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="my-24">
           <div className="wrapper">
             <h2 className="mb-2.5">Thanks for taking a look.</h2>
             <p className="mb-5">
@@ -123,7 +162,7 @@ export default function Home() {
             </button>
           </div>
         </section>
-        <footer className="my-20">
+        <footer className="my-24">
           <div className="wrapper">
             <p className="opacity-20 font-light text-base">
               © {new Date().getFullYear()} Design-Humane
