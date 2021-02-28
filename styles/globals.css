@@ -24,4 +24,10 @@ p {
   @apply h-10;
 }
 
+.inset-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @tailwind utilities;

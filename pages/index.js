@@ -3,12 +3,22 @@ import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
 import { IconArrow } from "../components/Icons";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [isCopied, setCopied] = useState(false);
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("hello@designhumane.com");
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1200);
   };
 
   return (
@@ -41,8 +51,25 @@ export default function Home() {
             <div className="spacer"></div>
 
             <h2>Contact</h2>
-            <div>
-              <p className="cursor-pointer pb-1 inline-block border-b border-solid border-white">
+            <div className="relative">
+              <motion.div
+                initial={{ scale: 0.8, y: "-50%" }}
+                animate={{
+                  y: "-50%",
+                  scale: isCopied ? 1 : 0.8,
+                  opacity: isCopied ? 1 : 0,
+                }}
+                transition={{ easings: "ease", duration: 0.2 }}
+                className={classNames(
+                  "absolute py-1 px-2 transition-all bg-white bg-opacity-5 inset-vertical -right-2 rounded-sm font-normal text-sm"
+                )}
+              >
+                Copied!
+              </motion.div>
+              <p
+                onClick={() => copyEmail()}
+                className="cursor-pointer pb-1 inline-block border-b border-solid border-white"
+              >
                 hello@designhumane.com
               </p>
             </div>
@@ -51,12 +78,30 @@ export default function Home() {
 
             <h2>Social</h2>
             <div>
-              <p className="cursor-pointer pb-px mr-10 inline-block border-b border-solid border-white">
+              <a
+                href="https://www.dribbble.com/_abhiii"
+                target="_blank"
+                rel="noreferer noopener"
+                className="cursor-pointer pb-px inline-block border-b border-solid border-white hover:bg-dribbble hover:bg-opacity-20 hover:border-dribbble"
+              >
                 Dribbble
-              </p>
-              <p className="cursor-pointer pb-px inline-block border-b border-solid border-white">
+              </a>
+              <a
+                href="https://www.twitter.com/_abhiii"
+                target="_blank"
+                rel="noreferer noopener"
+                className="cursor-pointer pb-px mx-10 inline-block border-b border-solid border-white hover:bg-twitter hover:bg-opacity-20 hover:border-twitter"
+              >
                 Twitter
-              </p>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/origine/"
+                target="_blank"
+                rel="noreferer noopener"
+                className="cursor-pointer pb-px inline-block border-b border-solid border-white hover:bg-linkedin hover:bg-opacity-20 hover:border-linkedin"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
         </section>
@@ -125,7 +170,7 @@ export default function Home() {
             </p>
             <div className="border-b py-3 border-solid border-white border-opacity-20 relative">
               <input
-                className="bg-transparent p-0 w-full pr-8 font-light placeholder-white placeholder-opacity-30"
+                className="bg-transparent focus:outline-none outline-none p-0 w-full pr-8 font-light placeholder-white placeholder-opacity-30"
                 type="email"
                 placeholder="email"
                 required
