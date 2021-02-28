@@ -119,7 +119,7 @@ export default function Home() {
         <section className="my-24">
           <div className="wrapper">
             <h2 className="mb-2.5">Subscribe to the newsletter</h2>
-            <p className="mb-5">
+            <p className="mb-2.5">
               Get emails from me about web development, tech, and early access
               to new articles.
             </p>
